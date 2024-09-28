@@ -7,6 +7,7 @@
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "geometry_msgs/msg/pose.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 namespace my_robot_driver
@@ -19,14 +20,29 @@ namespace my_robot_driver
                   std::unordered_map<std::string, std::string> &parameters) override;
 
     private:
-        rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr
-            cmd_vel_subscription_;
+        rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_subscription_;
         geometry_msgs::msg::Twist cmd_vel_msg;
 
-        WbDeviceTag wheel_3;
-        WbDeviceTag wheel_4;
         WbDeviceTag wheel_1;
         WbDeviceTag wheel_2;
+        WbDeviceTag wheel_3;
+        WbDeviceTag wheel_4;
+
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr gps_publisher_;
+        rclcpp::TimerBase::SharedPtr timer_;
+
+        WbDeviceTag gps;
+
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr imu_publisher_;
+
+        WbDeviceTag imu;
+
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr encoder_publisher_;
+
+        WbDeviceTag enc_1;
+        WbDeviceTag enc_2;
+        WbDeviceTag enc_3;
+        WbDeviceTag enc_4;
     };
 } // namespace my_robot_driver
 #endif
