@@ -10,8 +10,8 @@ This repository contains a Webots simulation for an omni-wheel drive robot, focu
 - `/cmd_vel`: The `linear.x`, `linear.y`, and `angular.z` values are used to control the motion of the robot.
 
 ## Dependencies:
-1. Ubuntu 22.04
-2. ROS 2 Humble Hawksbill
+1. Ubuntu 24.04
+2. ROS 2 Jazzy Jalisco
 3. Webots
 4. Webots-ROS2 package
 
