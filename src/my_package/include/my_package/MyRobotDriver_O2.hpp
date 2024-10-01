@@ -10,7 +10,7 @@
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-namespace my_robot_driver
+namespace my_robot_driver_O2
 {
     class MyRobotDriver : public webots_ros2_driver::PluginInterface
     {
