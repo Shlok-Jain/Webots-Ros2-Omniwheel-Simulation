@@ -1,4 +1,4 @@
-#include "my_package/MyRobotDriver.hpp"
+#include "my_package/MyRobotDriver_O4.hpp"
 
 #include "rclcpp/rclcpp.hpp"
 #include <cstdio>
@@ -10,12 +10,12 @@
 #include <webots/position_sensor.h>
 
 
-#define DISTANCE_OF_WHEELS_FROM_CENTER 0.045 // Diagonal/2
-#define WHEEL_RADIUS 0.025 // Adjust to your robot's wheel radius
+#define DISTANCE_OF_WHEELS_FROM_CENTER 0.1 // Diagonal/2
+#define WHEEL_RADIUS 0.05 // Adjust to your robot's wheel radius
 #define ROOT_2 1.41421356237 // Pre-calculated value of sqrt(2)
 #define SAMPLING_PERIOD 100 // GPS sampling time in ms
 
-namespace my_robot_driver {
+namespace my_robot_driver_O4 {
 
   void MyRobotDriver::init(
     webots_ros2_driver::WebotsNode *node,
@@ -61,7 +61,7 @@ namespace my_robot_driver {
     
     // Subscribe to cmd_vel to receive velocity commands
     cmd_vel_subscription_ = node->create_subscription<geometry_msgs::msg::Twist>(
-        "/cmd_vel", rclcpp::SensorDataQoS().reliable(),
+        "/O4/cmd_vel", rclcpp::SensorDataQoS().reliable(),
         [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
           this->cmd_vel_msg.linear = msg->linear;
           this->cmd_vel_msg.angular = msg->angular;
@@ -69,9 +69,9 @@ namespace my_robot_driver {
     );
 
     // Publish GPS, IMU and encoder data
-    gps_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("gps_data", 10);
-    imu_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("imu_data", 10);
-    encoder_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("encoder_data", 10);
+    gps_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/gps_data", 10);
+    imu_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/imu_data", 10);
+    encoder_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/encoder_data", 10);
 
     timer_ = node->create_wall_timer(std::chrono::milliseconds(SAMPLING_PERIOD), [this]() { // Timer for periodic publishing
       wb_robot_step(SAMPLING_PERIOD);                       // Step simulation in Webots
@@ -116,5 +116,5 @@ namespace my_robot_driver {
 } // namespace my_robot_driver
 
 #include "pluginlib/class_list_macros.hpp"
-PLUGINLIB_EXPORT_CLASS(my_robot_driver::MyRobotDriver, webots_ros2_driver::PluginInterface)
+PLUGINLIB_EXPORT_CLASS(my_robot_driver_O4::MyRobotDriver, webots_ros2_driver::PluginInterface)
 

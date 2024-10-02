@@ -20,7 +20,18 @@ pluginlib_export_plugin_description_file(webots_ros2_driver my_robot_driver.xml)
 add_library(
   ${PROJECT_NAME}
   SHARED
-  src/MyRobotDriver.cpp
+  src/MyRobotDriver_O1.cpp
+  src/MyRobotDriver_O2.cpp
+  src/MyRobotDriver_O3.cpp
+  src/MyRobotDriver_O4.cpp
+  src/MyRobotDriver_O5.cpp
+
+  src/MyRobotDriver_B1.cpp
+  src/MyRobotDriver_B2.cpp
+  src/MyRobotDriver_B3.cpp
+  src/MyRobotDriver_B4.cpp
+  src/MyRobotDriver_B5.cpp
+
 )
 target_include_directories(
   ${PROJECT_NAME}
