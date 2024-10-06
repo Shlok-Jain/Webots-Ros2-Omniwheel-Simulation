@@ -28,16 +28,12 @@ namespace my_robot_driver_B3
         WbDeviceTag wheel_3;
         WbDeviceTag wheel_4;
 
-        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr gps_publisher_;
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr b3_publisher_;
         rclcpp::TimerBase::SharedPtr timer_;
 
         WbDeviceTag gps;
 
-        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr imu_publisher_;
-
         WbDeviceTag imu;
-
-        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr encoder_publisher_;
 
         WbDeviceTag enc_1;
         WbDeviceTag enc_2;

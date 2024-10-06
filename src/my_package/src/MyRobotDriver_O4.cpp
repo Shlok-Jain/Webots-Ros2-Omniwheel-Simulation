@@ -69,29 +69,20 @@ namespace my_robot_driver_O4 {
     );
 
     // Publish GPS, IMU and encoder data
-    gps_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/gps_data", 10);
-    imu_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/imu_data", 10);
-    encoder_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("O4/encoder_data", 10);
+    o4_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("o4_data", 10);
 
     timer_ = node->create_wall_timer(std::chrono::milliseconds(SAMPLING_PERIOD), [this]() { // Timer for periodic publishing
       wb_robot_step(SAMPLING_PERIOD);                       // Step simulation in Webots
       const double *gps_position = wb_gps_get_values(gps);  // Retrieve GPS data
-      auto msg = std_msgs::msg::Float32MultiArray();        // Fill ROS2 message
-      msg.data = {static_cast<float>(gps_position[0]), static_cast<float>(gps_position[1]), static_cast<float>(gps_position[2])};
-      gps_publisher_->publish(msg);                         // Publish GPS data
-
       const double *imu_position = wb_inertial_unit_get_roll_pitch_yaw(imu);
-      msg = std_msgs::msg::Float32MultiArray();
-      msg.data = {static_cast<float>(imu_position[0]), static_cast<float>(imu_position[1]), static_cast<float>(imu_position[2])};
-      imu_publisher_->publish(msg);                         // Publish IMU data
-
       double enc_1_position = wb_position_sensor_get_value(enc_1);
       double enc_2_position = wb_position_sensor_get_value(enc_2);
       double enc_3_position = wb_position_sensor_get_value(enc_3);
       double enc_4_position = wb_position_sensor_get_value(enc_4);
-      msg = std_msgs::msg::Float32MultiArray();
-      msg.data = {static_cast<float>(enc_1_position), static_cast<float>(enc_2_position), static_cast<float>(enc_3_position), static_cast<float>(enc_4_position)};
-      encoder_publisher_->publish(msg);                     // Publish encoder data
+
+      auto msg = std_msgs::msg::Float32MultiArray();        // Fill ROS2 message
+      msg.data = {static_cast<float>(gps_position[0]), static_cast<float>(gps_position[1]), static_cast<float>(imu_position[2]), static_cast<float>(enc_1_position), static_cast<float>(enc_2_position), static_cast<float>(enc_3_position), static_cast<float>(enc_4_position)};
+      o4_publisher_->publish(msg);                         // Publish GPS data
     });
   }
 
