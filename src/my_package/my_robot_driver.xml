@@ -63,5 +63,11 @@
     </description>
   </class>
 
+    <class type="my_ball_driver::MyRobotDriver" base_class_type="webots_ros2_driver::PluginInterface">
+    <description>
+      This is a basic simulation to integrate motion planning with webots_ros2
+    </description>
+  </class>
+
 
 </library>
