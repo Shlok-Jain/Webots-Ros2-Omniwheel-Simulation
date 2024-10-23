@@ -24,14 +24,14 @@ namespace my_ball_driver {
 
     // Subscribe to cmd_vel to receive velocity commands
     cmd_vel_subscription_ = node->create_subscription<geometry_msgs::msg::Twist>(
-        "/ball/cmd_vel", rclcpp::SensorDataQoS().reliable(),
+        "/new_ball/cmd_vel", rclcpp::SensorDataQoS().reliable(),
         [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
           this->cmd_vel_msg.linear = msg->linear;
           this->cmd_vel_msg.angular = msg->angular;
         }
     );
 
-    ball_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("ball_data", 10);
+    ball_publisher_ = node->create_publisher<std_msgs::msg::Float32MultiArray>("new_ball_data", 10);
 
     timer_ = node->create_wall_timer(std::chrono::milliseconds(SAMPLING_PERIOD), [this]() { // Timer for periodic publishing
       wb_robot_step(SAMPLING_PERIOD);                       // Step simulation in Webots
