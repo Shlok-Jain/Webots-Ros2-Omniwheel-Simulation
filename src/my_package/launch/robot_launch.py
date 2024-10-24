@@ -33,6 +33,15 @@ def generate_launch_description():
         )
         robot_controllers.append(robot_controller)
 
+    robot_description_path = os.path.join(package_dir, 'resource', 'ball.urdf')
+    robot_controller = WebotsController(
+        robot_name='new_ball',
+        parameters=[
+            {'robot_description': robot_description_path},
+        ]
+    )
+    robot_controllers.append(robot_controller)
+
     
 
     return LaunchDescription([
