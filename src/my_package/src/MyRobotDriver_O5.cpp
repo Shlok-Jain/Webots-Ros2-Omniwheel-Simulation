@@ -92,11 +92,15 @@ namespace my_robot_driver_O5 {
     auto vy = cmd_vel_msg.linear.y;  // Linear velocity in y-direction (sideways)
     auto omega = cmd_vel_msg.angular.z; // Angular velocity around z-axis (rotation)
 
+    double theta = *(wb_inertial_unit_get_roll_pitch_yaw(imu) + 2); // Get the current orientation of the robot
+    double vs = vx * cos(theta) + vy * sin(theta); // Calculate the forward velocity
+    double vp = -vx * sin(theta) + vy * cos(theta); // Calculate the sideways velocity
+
     // Compute individual wheel velocities based on omni-wheel kinematics with 45-degree orientation
-    auto v1 = (1 / WHEEL_RADIUS) * ((vx - vy) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
-    auto v2 = (1 / WHEEL_RADIUS) * ((vx + vy) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
-    auto v3 = (1 / WHEEL_RADIUS) * ((-vx + vy) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
-    auto v4 = (1 / WHEEL_RADIUS) * ((-vx - vy) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
+    auto v1 = (1 / WHEEL_RADIUS) * ((-vs + vp) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
+    auto v2 = (1 / WHEEL_RADIUS) * ((-vs - vp) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
+    auto v3 = (1 / WHEEL_RADIUS) * ((vs - vp) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
+    auto v4 = (1 / WHEEL_RADIUS) * ((vs + vp) / ROOT_2 + DISTANCE_OF_WHEELS_FROM_CENTER * omega);
 
     // Set the velocity for each motor
     wb_motor_set_velocity(wheel_1, v1);

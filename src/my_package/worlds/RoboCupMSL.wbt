@@ -4,10 +4,10 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BrushedAluminium.proto"
-EXTERNPROTO "/home/aruz/new_fork/Webots-Ros2-Omniwheel-Simulation/src/my_package/worlds/RobocupSoccerField.proto"
-EXTERNPROTO "/home/aruz/new_fork/Webots-Ros2-Omniwheel-Simulation/src/my_package/worlds/RobocupSoccerBall.proto"
-EXTERNPROTO "/home/aruz/new_fork/Webots-Ros2-Omniwheel-Simulation/src/my_package/worlds/OrangePlayer.proto"
-EXTERNPROTO "/home/aruz/new_fork/Webots-Ros2-Omniwheel-Simulation/src/my_package/worlds/BluePlayer.proto"
+EXTERNPROTO "RobocupSoccerField.proto"
+EXTERNPROTO "RobocupSoccerBall.proto"
+EXTERNPROTO "OrangePlayer.proto"
+EXTERNPROTO "BluePlayer.proto"
 
 WorldInfo {
 }
