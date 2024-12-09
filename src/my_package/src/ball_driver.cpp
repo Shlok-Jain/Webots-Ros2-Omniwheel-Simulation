@@ -9,9 +9,7 @@
 #include <webots/inertial_unit.h>
 #include <webots/position_sensor.h>
 
-
-
-#define SAMPLING_PERIOD 100 // GPS sampling time in ms
+#define SAMPLING_PERIOD 25 // GPS sampling time in ms
 
 namespace my_ball_driver {
 

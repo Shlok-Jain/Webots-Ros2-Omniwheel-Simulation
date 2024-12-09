@@ -13,7 +13,7 @@
 #define DISTANCE_OF_WHEELS_FROM_CENTER 0.1 // Diagonal/2
 #define WHEEL_RADIUS 0.05 // Adjust to your robot's wheel radius
 #define ROOT_2 1.41421356237 // Pre-calculated value of sqrt(2)
-#define SAMPLING_PERIOD 100 // GPS sampling time in ms
+#define SAMPLING_PERIOD 25// GPS sampling time in ms
 
 namespace my_robot_driver_B3 {
 
