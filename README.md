@@ -12,10 +12,19 @@ This repository contains a Webots simulation for an omni-wheel drive robot, focu
 2. ROS 2 Jazzy Jalisco
 3. Webots
 4. Webots-ROS2 package
+5. Pygame
 
-## Run the code
+## Run the webots simulation
 ```bash
 colcon build
 source install/local_setup.bash
 ros2 launch my_package robot_launch.py
+```
+
+## Run the pygame simulation
+```bash
+cd basestation_ws
+colcon build
+source install/local_setup.bash
+python3 src/decision_making/decision_making/robot_sim.py
 ```

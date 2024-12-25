@@ -61,7 +61,7 @@ namespace my_robot_driver_B5 {
     
     // Subscribe to cmd_vel to receive velocity commands
     cmd_vel_subscription_ = node->create_subscription<geometry_msgs::msg::Twist>(
-        "/B5/cmd_vel", rclcpp::SensorDataQoS().reliable(),
+        "/b5/cmd_vel", rclcpp::SensorDataQoS().reliable(),
         [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
           this->cmd_vel_msg.linear = msg->linear;
           this->cmd_vel_msg.angular = msg->angular;

@@ -22,7 +22,7 @@ namespace my_ball_driver {
 
     // Subscribe to cmd_vel to receive velocity commands
     cmd_vel_subscription_ = node->create_subscription<geometry_msgs::msg::Twist>(
-        "/new_ball/cmd_vel", rclcpp::SensorDataQoS().reliable(),
+        "/ball/cmd_vel", rclcpp::SensorDataQoS().reliable(),
         [this](const geometry_msgs::msg::Twist::SharedPtr msg) {
           this->cmd_vel_msg.linear = msg->linear;
           this->cmd_vel_msg.angular = msg->angular;
